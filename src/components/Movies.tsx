@@ -92,31 +92,33 @@ const Movies = () => {
                 ))}
             </Box> */}
         </Box>
-        <Table aria-label="simple table" className={classes.table}>
-                <TableHead>
-                    <TableRow>
-                    <TableCell>Item</TableCell>
-                    <TableCell align="right">Code</TableCell>
-                    </TableRow>
-                </TableHead>
-            <TableBody>
-                {arrayItem.map((row) => (
-                    <TableRow key={row.number}>
-                            <TableCell >
-                                <Chip   
-                                    label={row.item} 
-                                    onDelete={ () => removeMovie(row.number)}  
-                                    color={themeChip}
-                                    clickable
-                            />
-                            </TableCell>
-                            <TableCell component="th" scope="row" align="right">
-                                {row.number}
-                            </TableCell>
-                    </TableRow>
-                ))}
-            </TableBody>
-        </Table>
+        <TableContainer component={Paper}>
+                <Table aria-label="simple table" className={classes.table}>
+                        <TableHead>
+                            <TableRow>
+                            <TableCell>Item</TableCell>
+                            <TableCell align="right">Code</TableCell>
+                            </TableRow>
+                        </TableHead>
+                    <TableBody>
+                        {arrayItem.map((row) => (
+                            <TableRow key={row.number}>
+                                    <TableCell >
+                                        <Chip   
+                                            label={row.item} 
+                                            onDelete={ () => removeMovie(row.number)}  
+                                            color={themeChip}
+                                            clickable
+                                    />
+                                    </TableCell>
+                                    <TableCell component="th" scope="row" align="right">
+                                        {row.number}
+                                    </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+        </TableContainer> 
     </>
   )
 }
