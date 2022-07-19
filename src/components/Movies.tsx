@@ -57,11 +57,9 @@ const Movies = () => {
         return  {number, item} ;
        }
 
-    //    var arrayItem :  {};
        var arrayItem = movies.map(item => {
             return createData(item.id , item.title)
        })  
-    //    console.log(arrayItem); 
   return (
     <>
         <Box display="flex" justifyContent="center" my={5} className={classes.box}>
@@ -92,7 +90,7 @@ const Movies = () => {
                 ))}
             </Box> */}
         </Box>
-        <TableContainer component={Paper}>
+        <TableContainer >
                 <Table aria-label="simple table" className={classes.table}>
                         <TableHead>
                             <TableRow>

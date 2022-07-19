@@ -4,7 +4,8 @@ import WelcomMassage from "./WelcomMassage"
 import {ProcessContext} from '../contexts/ProcessContext'
 import {ThemeContext} from '../contexts/ThemeContext'
 import {createStyles , makeStyles, Theme} from '@material-ui/core'
-
+import Login from "./Login"
+import { AuthContex } from "../contexts/AuthContext"
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		positionSelect: {
@@ -26,7 +27,6 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         time : {
             textAlign : 'center',
-
             marginLeft : '77%',
             marginTop : '-8%'
         }
@@ -34,11 +34,11 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 const Navbar = () => {
     //style 
-    const classes = useStyles()
-
+    const classes = useStyles()    
     //contex
     const {lastTime, status} = useContext(ProcessContext)
     const {theme} = useContext(ThemeContext)
+    const {authInfo : { isAuthent } , login} = useContext(AuthContex)
     //state position 
     const [position , setPosition] = useState<string>('Full-stack Developer')
     const onPositionChange = (
@@ -57,6 +57,7 @@ const Navbar = () => {
 
     //state time
     const [time , setTime] = useState<Date>( () => new Date(Date.now()))
+    const [loginOpen , setLoginOpen] = useState(false)
     useEffect(() => {
         const timer = setInterval(() => setTime(new Date(Date.now())), 100)
         return () => clearInterval(timer)
@@ -101,9 +102,12 @@ const Navbar = () => {
                     </Box>
                     <Box textAlign="center" className={classes.time}>
                         <Box my={1}>
-                            <Typography variant="h6" >{time.toUTCString()}</Typography>
-                            <Button variant="contained">Login</Button>
+                            <Typography variant="h6" >{time.toUTCString()}</Typography> 
+                            <Button variant="contained" onClick={isAuthent ? () => {login('')} : () => setLoginOpen(true)}>
+                                { isAuthent ? 'Logout' : 'Login'}
+                            </Button>
                         </Box>
+                        <Login isOpen = {loginOpen} handleClose = {setLoginOpen} />
                     </Box>
         </AppBar>
     )
