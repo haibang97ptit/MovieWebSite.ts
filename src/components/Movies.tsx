@@ -9,7 +9,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import { AuthContex } from "../contexts/AuthContext"
+
 //style
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Movies = () => {
     const classes = useStyles()
-
+    const {authInfo : { isAuthent } , login} = useContext(AuthContex)
     //state
     const [movie , setMovie] = useState('')
 
@@ -63,7 +64,7 @@ const Movies = () => {
   return (
     <>
         <Box display="flex" justifyContent="center" my={5} className={classes.box}>
-            <TextField id ="text" label="Text your favourite movies..." variant="outlined" className={classes.movieInput} onChange={inputMovie} value={movie} />
+            <TextField id ="text" label="Text your favourite movies..." variant="outlined" className={classes.movieInput} onChange={inputMovie} value={movie} disabled={!isAuthent}/>
             <Button
                 id="abc" 
                 variant="outlined" 

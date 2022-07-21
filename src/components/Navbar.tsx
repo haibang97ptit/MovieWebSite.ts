@@ -5,6 +5,7 @@ import {ProcessContext} from '../contexts/ProcessContext'
 import {ThemeContext} from '../contexts/ThemeContext'
 import {createStyles , makeStyles, Theme} from '@material-ui/core'
 import Login from "./Login"
+import AlerLogin from "./AlerLogin"
 import { AuthContex } from "../contexts/AuthContext"
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -58,6 +59,7 @@ const Navbar = () => {
     //state time
     const [time , setTime] = useState<Date>( () => new Date(Date.now()))
     const [loginOpen , setLoginOpen] = useState(false)
+    const [showAlert , setShowAlert] = useState(true)
     useEffect(() => {
         const timer = setInterval(() => setTime(new Date(Date.now())), 100)
         return () => clearInterval(timer)
@@ -108,6 +110,7 @@ const Navbar = () => {
                             </Button>
                         </Box>
                         <Login isOpen = {loginOpen} handleClose = {setLoginOpen} />
+                        <AlerLogin isShow={showAlert} handleOff={setShowAlert} />
                     </Box>
         </AppBar>
     )

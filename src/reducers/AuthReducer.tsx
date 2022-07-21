@@ -1,4 +1,3 @@
-import React from 'react' 
 import { AuthActionType } from './typeAuth'
 
 const { AUTH_TYPE } = AuthActionType

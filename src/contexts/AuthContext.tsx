@@ -14,9 +14,7 @@ const authDefault = {
     isAuthent : false,
     username : ''
 }
-const AuthContexDefaultData ={
 
-}
 export const AuthContex = createContext<AuthContextDefault>({
     authInfo : authDefault,
     login : () => {}
